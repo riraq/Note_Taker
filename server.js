@@ -5,8 +5,8 @@ const path = require('path');
 const db = require('./db/db')
 const { v4: uuidv4 } = require('uuid');
 
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get('/notes', (req, res) => {
@@ -18,10 +18,9 @@ app.get('/api/notes', (req, res) => {
 })
 
 app.post('/api/notes', (req, res) =>{
-    req.body.id = uuidv4();
+    req.body.id = `id-${uuidv4()}`;
     db.push(req.body);
-    console.log('this is the current data in the db: ', db);
-    res.end;
+    res.json(db);
 })
 
 app.get('*', (req, res) => {
