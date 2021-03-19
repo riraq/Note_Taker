@@ -17,8 +17,13 @@ app.get('/api/notes', (req, res) => {
     res.json(db);
 })
 
+app.delete('/api/notes/:id', (req, res) => {
+    console.log(req.params.id)
+    res.json(db);
+})
+
 app.post('/api/notes', (req, res) =>{
-    req.body.id = `id-${uuidv4()}`;
+    req.body.id = `${uuidv4()}`;
     db.push(req.body);
     res.json(db);
 })
