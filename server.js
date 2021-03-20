@@ -19,12 +19,9 @@ app.get('/api/notes', (req, res) => {
 
 app.delete('/api/notes/:id', (req, res) => {
     const uniqueID = req.params.id;
-    console.log(db)
-
     for (let i=0; i<db.length; i++){
         if (uniqueID === db[i].id) {
             db.splice(i, 1);
-            console.log('updated db: ', db)
         }
     };
     res.json(db);
